@@ -5,6 +5,7 @@
  */
 package com.example.shop.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -51,22 +52,17 @@ public class Book implements Serializable {
     private String author;
     @Column(name = "pages_count")
     private Integer pagesCount;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
-    private Integer price;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
-    private Collection<UserOrder> userOrderCollection;
-    @JoinColumn(name = "id_user", referencedColumnName = "id")
-    @ManyToOne
-    private UserData idUser;
+    private Float price;
+//    @JoinColumn(name = "id_user", referencedColumnName = "id")
+//    @ManyToOne
+//    private UserData idUser;
+    @Column(name = "id_user")    
+    private Integer idUser;
 
     public Book() {
-    }
-    
-    public Book(String title, String author, Integer pages_count, Integer price) {
-        this.title = title;
-        this.author = author;
-        this.pagesCount = pages_count;
-        this.price = price;
+    //    userIdNum = idUser.getId();
     }
 
     public Book(Integer id) {
@@ -105,28 +101,27 @@ public class Book implements Serializable {
         this.pagesCount = pagesCount;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    @XmlTransient
-    public Collection<UserOrder> getUserOrderCollection() {
-        return userOrderCollection;
-    }
-
-    public void setUserOrderCollection(Collection<UserOrder> userOrderCollection) {
-        this.userOrderCollection = userOrderCollection;
-    }
-
-    public UserData getIdUser() {
+//    public UserData getIdUser() {
+//        return idUser;
+//    }
+//
+//    public void setIdUser(UserData idUser) {
+//        this.idUser = idUser;
+//    }
+    
+    public Integer getIdUser(){
         return idUser;
     }
-
-    public void setIdUser(UserData idUser) {
+    
+    public void setIdUser(Integer idUser){
         this.idUser = idUser;
     }
 

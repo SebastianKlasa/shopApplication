@@ -14,4 +14,21 @@ public class BookService {
     public Collection<Book> getAllBooks(){
         return bookDao.getAllBooks();
     }
+    
+    public Book getBookById(int bookId){
+        return bookDao.getBookById(bookId);
+    }
+    
+    public void addBook(Book book){
+        bookDao.addBook(book);
+    }
+    
+    public void updateBook(Book book){
+        System.out.println("service");
+        bookDao.updateBook(book);
+    }
+    
+    public void deleteBook(Book book){
+        bookDao.deleteBook(book);
+    }
 }

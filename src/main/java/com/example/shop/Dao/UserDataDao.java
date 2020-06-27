@@ -1,49 +1,45 @@
 package com.example.shop.Dao;
 
 import com.example.shop.Entity.Book;
+import com.example.shop.Entity.UserData;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookDao {
-    private EntityManager em;
+public class UserDataDao {
+    EntityManager em;
     
-    public BookDao(){
+    public UserDataDao(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("bookShopPU");
         em = emf.createEntityManager();        
     }
     
-    public Collection<Book> getAllBooks(){
-        return (Collection<Book>)em.createQuery("select b from Book b").getResultList();
+    public Collection<UserData> getAllUserData(){
+        return (Collection<UserData>)em.createQuery("select b from UserData b").getResultList();
     }
     
-    public Book getBookById(int bookId){
-        return em.find(Book.class, bookId);
+    public UserData getUserDataById(int userDataId){
+        return em.find(UserData.class, userDataId);
     }
     
-    public void addBook(Book book){
-        System.out.print(book.toString()+", "+book.getTitle());
+    public void addUserData(UserData userData){
         em.getTransaction().begin();
-        em.persist(book); //why persist does not work? book obj's id must be null!
+        em.persist(userData);
         em.getTransaction().commit();
     }
     
-    public void updateBook(Book book){
-        System.out.println("dao");
+    public void updateUserData(UserData userData){
         em.getTransaction().begin();
-        em.merge(book);
+        em.merge(userData);
         em.getTransaction().commit();
     }
     
-    public void deleteBook(Book book){
+    public void deleteUserData(UserData userData){
         em.getTransaction().begin();
-        em.remove(em.merge(book));
+        em.remove(em.merge(userData));
         em.getTransaction().commit();        
     }
 }
