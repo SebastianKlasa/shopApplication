@@ -36,12 +36,10 @@ public class UserOrder implements Serializable {
     protected UserOrderPK userOrderPK;
     @Column(name = "count")
     private Integer count;
-    @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Book book;
-    @JoinColumn(name = "id_order", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private OrderData orderData;
+    @Column(name = "id_book")
+    private Integer book;
+    @Column(name = "id_order")
+    private Integer orderData;
 
     public UserOrder() {
     }
@@ -70,19 +68,19 @@ public class UserOrder implements Serializable {
         this.count = count;
     }
 
-    public Book getBook() {
+    public Integer getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Integer book) {
         this.book = book;
     }
 
-    public OrderData getOrderData() {
+    public Integer getOrderData() {
         return orderData;
     }
 
-    public void setOrderData(OrderData orderData) {
+    public void setOrderData(Integer orderData) {
         this.orderData = orderData;
     }
 

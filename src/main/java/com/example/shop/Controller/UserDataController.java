@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/userData")
 public class UserDataController {
-    //ToDo
-    
-    
     @Autowired
     private UserDataService userDataService;
     

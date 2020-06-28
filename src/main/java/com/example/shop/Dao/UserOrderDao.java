@@ -1,6 +1,6 @@
 package com.example.shop.Dao;
 
-import com.example.shop.Entity.Book;
+import com.example.shop.Entity.UserOrder;
 import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,39 +8,37 @@ import javax.persistence.Persistence;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookDao {
-    private EntityManager em;
+public class UserOrderDao {
+    EntityManager em;
     
-    public BookDao(){
+    public UserOrderDao(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("bookShopPU");
         em = emf.createEntityManager();        
     }
     
-    public Collection<Book> getAllBooks(){
-        return (Collection<Book>)em.createQuery("select b from Book b").getResultList();
+    public Collection<UserOrder> getAllUserOrder(){
+        return (Collection<UserOrder>)em.createQuery("select b from UserOrder b").getResultList();
     }
     
-    public Book getBookById(int bookId){
-        return em.find(Book.class, bookId);
+    public UserOrder getUserOrderById(int userOrderId){
+        return em.find(UserOrder.class, userOrderId);
     }
     
-    public void addBook(Book book){
-        System.out.print(book.toString()+", "+book.getTitle());
+    public void addUserOrder(UserOrder userOrder){
         em.getTransaction().begin();
-        em.persist(book); //why persist does not work? book obj's id must be null!
+        em.persist(userOrder);
         em.getTransaction().commit();
     }
     
-    public void updateBook(Book book){
-        System.out.println("dao");
+    public void updateUserOrder(UserOrder userOrder){
         em.getTransaction().begin();
-        em.merge(book);
+        em.merge(userOrder);
         em.getTransaction().commit();
     }
     
-    public void deleteBook(Book book){
+    public void deleteUserOrder(UserOrder userOrder){
         em.getTransaction().begin();
-        em.remove(em.merge(book));
+        em.remove(em.merge(userOrder));
         em.getTransaction().commit();        
     }
 }

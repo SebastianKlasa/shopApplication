@@ -55,14 +55,11 @@ public class Book implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
     private Float price;
-//    @JoinColumn(name = "id_user", referencedColumnName = "id")
-//    @ManyToOne
-//    private UserData idUser;
     @Column(name = "id_user")    
     private Integer idUser;
 
     public Book() {
-    //    userIdNum = idUser.getId();
+        
     }
 
     public Book(Integer id) {
@@ -108,14 +105,6 @@ public class Book implements Serializable {
     public void setPrice(Float price) {
         this.price = price;
     }
-
-//    public UserData getIdUser() {
-//        return idUser;
-//    }
-//
-//    public void setIdUser(UserData idUser) {
-//        this.idUser = idUser;
-//    }
     
     public Integer getIdUser(){
         return idUser;
