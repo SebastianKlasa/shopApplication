@@ -5,6 +5,7 @@
  */
 package com.example.shop.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -59,6 +60,12 @@ public class UserData implements Serializable {
     private String street;
     @Column(name = "home_number")
     private String homeNumber;
+    @OneToMany(mappedBy = "idUser")
+    @JsonIgnore
+    private Collection<OrderData> orderDataCollection;
+    @OneToMany(mappedBy = "idUser")
+    @JsonIgnore
+    private Collection<Book> bookCollection;
 
     public UserData() {
     }
@@ -129,6 +136,24 @@ public class UserData implements Serializable {
 
     public void setHomeNumber(String homeNumber) {
         this.homeNumber = homeNumber;
+    }
+
+    @XmlTransient
+    public Collection<OrderData> getOrderDataCollection() {
+        return orderDataCollection;
+    }
+
+    public void setOrderDataCollection(Collection<OrderData> orderDataCollection) {
+        this.orderDataCollection = orderDataCollection;
+    }
+
+    @XmlTransient
+    public Collection<Book> getBookCollection() {
+        return bookCollection;
+    }
+
+    public void setBookCollection(Collection<Book> bookCollection) {
+        this.bookCollection = bookCollection;
     }
 
     @Override

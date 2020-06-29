@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title")
     , @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author")
     , @NamedQuery(name = "Book.findByPagesCount", query = "SELECT b FROM Book b WHERE b.pagesCount = :pagesCount")
-    , @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price")})
+    , @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price")
+    , @NamedQuery(name = "Book.findByCount", query = "SELECT b FROM Book b WHERE b.count = :count")})
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,11 +56,12 @@ public class Book implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
     private Float price;
-    @Column(name = "id_user")    
+    @Column(name = "count")
+    private Integer count;
+    @Column(name="id_user")
     private Integer idUser;
 
     public Book() {
-        
     }
 
     public Book(Integer id) {
@@ -105,12 +107,20 @@ public class Book implements Serializable {
     public void setPrice(Float price) {
         this.price = price;
     }
-    
-    public Integer getIdUser(){
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getidUser() {
         return idUser;
     }
-    
-    public void setIdUser(Integer idUser){
+
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 

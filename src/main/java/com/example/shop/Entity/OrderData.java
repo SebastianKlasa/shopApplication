@@ -54,6 +54,8 @@ public class OrderData implements Serializable {
     private String payMethod;
     @Column(name = "delivery_method")
     private String deliveryMethod;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderData")
+    private Collection<UserOrder> userOrderCollection;
     @Column(name = "id_user")
     private Integer idUser;
 
@@ -94,6 +96,15 @@ public class OrderData implements Serializable {
 
     public void setDeliveryMethod(String deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
+    }
+
+    @XmlTransient
+    public Collection<UserOrder> getUserOrderCollection() {
+        return userOrderCollection;
+    }
+
+    public void setUserOrderCollection(Collection<UserOrder> userOrderCollection) {
+        this.userOrderCollection = userOrderCollection;
     }
 
     public Integer getIdUser() {

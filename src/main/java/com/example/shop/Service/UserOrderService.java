@@ -19,6 +19,10 @@ public class UserOrderService {
         return userOrderDao.getUserOrderById(userOrderId);
     }
     
+     public Collection<UserOrder> getUserOrderByOrderId(int id){
+        return userOrderDao.getUserOrderByOrderId(id);
+    }
+    
     public void addUserOrder(UserOrder userOrder){
         userOrderDao.addUserOrder(userOrder);
     }

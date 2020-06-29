@@ -5,6 +5,7 @@
  */
 package com.example.shop.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -36,10 +37,13 @@ public class UserOrder implements Serializable {
     protected UserOrderPK userOrderPK;
     @Column(name = "count")
     private Integer count;
-    @Column(name = "id_book")
-    private Integer book;
-    @Column(name = "id_order")
-    private Integer orderData;
+    @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Book book;
+    @JoinColumn(name = "id_order", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    @JsonIgnore
+    private OrderData orderData;
 
     public UserOrder() {
     }
@@ -68,19 +72,19 @@ public class UserOrder implements Serializable {
         this.count = count;
     }
 
-    public Integer getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(Integer book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
-    public Integer getOrderData() {
+    public OrderData getOrderData() {
         return orderData;
     }
 
-    public void setOrderData(Integer orderData) {
+    public void setOrderData(OrderData orderData) {
         this.orderData = orderData;
     }
 

@@ -32,7 +32,6 @@ public class BookController {
     
     @RequestMapping(method = RequestMethod.PUT)
     public void updateBook(Book book){
-        System.out.println("controller: "+book.toString()+"userId: "+book.getIdUser());
         bookService.updateBook(book);
     }
     

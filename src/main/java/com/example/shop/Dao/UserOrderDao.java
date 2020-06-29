@@ -24,6 +24,10 @@ public class UserOrderDao {
         return em.find(UserOrder.class, userOrderId);
     }
     
+    public Collection<UserOrder> getUserOrderByOrderId(int id){
+        return (Collection<UserOrder>)em.createQuery("select b from UserOrder b where b.userOrderPK.idOrder="+id);
+    }
+    
     public void addUserOrder(UserOrder userOrder){
         em.getTransaction().begin();
         em.persist(userOrder);
