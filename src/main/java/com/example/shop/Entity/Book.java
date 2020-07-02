@@ -5,24 +5,17 @@
  */
 package com.example.shop.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -66,6 +59,12 @@ public class Book implements Serializable {
 
     public Book(Integer id) {
         this.id = id;
+    }
+    
+    public Book(Integer id, Float price, Integer count){
+        this.id = id;
+        this.price = price;
+        this.count = count;
     }
 
     public Integer getId() {

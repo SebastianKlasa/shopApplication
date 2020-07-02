@@ -6,6 +6,7 @@ import com.example.shop.Service.UserDataService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,17 +28,17 @@ public class UserDataController {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void addUserData(UserData userData){
+    public void addUserData(@RequestBody UserData userData){
         userDataService.addUserData(userData);
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateUserData(UserData userData){
+    public void updateUserData(@RequestBody UserData userData){
         userDataService.updateUserData(userData);
     }
     
     @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteUserData(UserData userData){
+    public void deleteUserData(@RequestBody UserData userData){
         userDataService.deleteUserData(userData);
     }
     

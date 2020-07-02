@@ -55,6 +55,11 @@ public class UserOrder implements Serializable {
     public UserOrder(int id, int idBook, int idOrder) {
         this.userOrderPK = new UserOrderPK(id, idBook, idOrder);
     }
+    
+    public UserOrder(Book book, Integer count){
+        this.book = book;
+        this.count = count;
+    }
 
     public UserOrderPK getUserOrderPK() {
         return userOrderPK;

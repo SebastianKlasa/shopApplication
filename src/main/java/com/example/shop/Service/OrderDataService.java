@@ -17,10 +17,6 @@ import org.springframework.stereotype.Service;
 public class OrderDataService {
     @Autowired
     private OrderDataDao orderDataDao;
-    @Autowired
-    private BookService bookService;
-    @Autowired
-    private UserOrderService userOrderService; 
     
     public Collection<OrderData> getAllOrderData(){
         return orderDataDao.getAllOrderData();
@@ -39,7 +35,11 @@ public class OrderDataService {
     }
     
     public void updateOrderData(OrderData orderData){
+        List<UserOrder> orderElements = (ArrayList<UserOrder>)orderData.getUserOrderCollection();
+        if(isItemInMagazine(orderElements) && isOneElementInOrder(orderElements) 
+                && noDuplicatesInOrder(orderElements) && isOrderCostEnough(orderElements)){
         orderDataDao.updateOrderData(orderData);
+        }
     }
     
     public void deleteOrderData(OrderData orderData){
@@ -82,7 +82,12 @@ public class OrderDataService {
         float costBounder =  29.0f;
         float currentPrice = 0.0f;
         for(UserOrder element:orderElements){
-            currentPrice = element.getBook().getPrice();
+            try{
+                currentPrice += element.getBook().getPrice().floatValue();
+            }
+            catch(NumberFormatException e){
+                return false;
+            }
         }
         if(currentPrice > costBounder) return true;
         else return false;

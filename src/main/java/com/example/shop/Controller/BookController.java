@@ -5,6 +5,7 @@ import com.example.shop.Service.BookService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +27,17 @@ public class BookController {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void addBook(Book book){
+    public void addBook(@RequestBody Book book){
         bookService.addBook(book);
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateBook(Book book){
+    public void updateBook(@RequestBody Book book){
         bookService.updateBook(book);
     }
     
     @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteBook(Book book){
+    public void deleteBook(@RequestBody Book book){
         bookService.deleteBook(book);
     }
 }
