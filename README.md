@@ -17,11 +17,11 @@ Application has tests that has to be passed to build project.
 
 #### Book
 Data about books in shop.
-  - [GET /userOrder](#get-books)
-  - [GET /userOrder/[id]](#get-bookbyid)
-  - [POST /userOrder/[id]/book](#post-book)
-  - [PUT /userOrder/[id]/book](#put-book)
-  - [DELETE /userOrder/[id]/book](#delete-book)
+  - [GET /books](#get-books)
+  - [GET /books/[id]](#get-bookbyid)
+  - [POST /books/[id]/book](#post-book)
+  - [PUT /books/[id]/book](#put-book)
+  - [DELETE /books/[id]/book](#delete-book)
 
 ##### GET /books
 
@@ -29,7 +29,7 @@ Example: http://localhost:8080/books
 
 Response body:
 
-`  [
+```  [
   {
   id: 1,
   title: "Lalka",
@@ -66,7 +66,7 @@ Response body:
   count: null,
   idUser: 2
   }
-  ]`
+  ]```
 
 #### OrderData
 Data about submitted orders.
