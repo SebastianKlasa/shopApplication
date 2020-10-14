@@ -29,44 +29,27 @@ Example: http://localhost:8080/books
 
 Response body:
 
-```  [
+```
+[
   {
-  id: 1,
-  title: "Lalka",
-  author: "Bolesław Prus",
-  pagesCount: 859,
-  price: 49.97,
-  count: null,
-  idUser: 1
+    id: 1,
+    title: "Lalka",
+    author: "Bolesław Prus",
+    pagesCount: 859,
+    price: 49.97,
+    count: null,
+    idUser: 1
   },
   {
-  id: 2,
-  title: "Stary czlowiek i morze",
-  author: "Ernest Hemingway",
-  pagesCount: 90,
-  price: 19.99,
-  count: null,
-  idUser: 2
-  },
-  {
-  id: 7,
-  title: "Kamienie na szaniec",
-  author: "",
-  pagesCount: 100,
-  price: 19.97,
-  count: null,
-  idUser: 2
-  },
-  {
-  id: 12,
-  title: "Krzyżacy",
-  author: "Sienkiewicz",
-  pagesCount: 300,
-  price: 19.97,
-  count: null,
-  idUser: 2
+    id: 2,
+    title: "Stary czlowiek i morze",
+    author: "Ernest Hemingway",
+    pagesCount: 90,
+    price: 19.99,
+    count: null,
+    idUser: 2
   }
-  ] 
+] 
   ```
 
 #### OrderData
