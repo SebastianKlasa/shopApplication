@@ -28,7 +28,7 @@ Data about books in shop.
 Example: http://localhost:8080/books
 
 Response body:
-[
+`[
 {
 id: 1,
 title: "Lalka",
@@ -65,7 +65,7 @@ price: 19.97,
 count: null,
 idUser: 2
 }
-]
+]`
 
 #### OrderData
 Data about submitted orders.
