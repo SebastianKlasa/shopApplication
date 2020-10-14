@@ -19,9 +19,9 @@ Application has tests that has to be passed to build project.
 Data about books in shop.
   - [GET /books](#get-books)
   - [GET /books/[id]](#get-bookbyid)
-  - [POST /books/[id]/book](#post-book)
-  - [PUT /books/[id]/book](#put-book)
-  - [DELETE /books/[id]/book](#delete-book)
+  - [POST /books/book](#post-book)
+  - [PUT /books/book](#put-book)
+  - [DELETE /books/book](#delete-book)
 
 ##### GET /books
 
@@ -50,6 +50,76 @@ Response body:
     idUser: 2
   }
 ] 
+  ```
+  
+##### GET /books/[id]
+
+Example: http://localhost:8080/books/1
+
+Response body:
+
+```
+<book>
+  <author>Bolesław Prus</author>
+  <id>1</id>
+  <pagesCount>859</pagesCount>
+  <price>49.97</price>
+  <title>Lalka</title>
+</book>
+  ```
+  
+##### POST /books/book
+
+Example: http://localhost:8080/books/book
+
+Request body:
+
+```
+{
+    "id": null,
+    "title": "Krzyżacy",
+    "author": "Sienkiewicz",
+    "pagesCount": 300,
+    "price": 19.97,
+    "count": null,
+    "idUser": 2
+}
+  ```
+  
+##### PUT /books/book
+
+Example: http://localhost:8080/books/book
+
+Request body:
+
+```
+{
+    "id": 19,
+    "title": "Dziady",
+    "author": "Mickiewicz",
+    "pagesCount": 300,
+    "price": 19.97,
+    "count": null,
+    "idUser": 2
+}
+  ```
+  
+##### DELETE /books/book
+
+Example: http://localhost:8080/books/book
+
+Request body:
+
+```
+{
+    "id": 19,
+    "title": "Dziady",
+    "author": "Mickiewicz",
+    "pagesCount": 300,
+    "price": 19.97,
+    "count": null,
+    "idUser": 2
+}
   ```
 
 #### OrderData
