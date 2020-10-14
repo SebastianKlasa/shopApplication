@@ -1,7 +1,7 @@
 # shopApplication
 
 ## Description
-REST API for shop application.
+REST API for shop application (Without Service layer).
 
 #### Database
 Catalog 'database' contain database scheme and example data.
@@ -19,9 +19,9 @@ Application has tests that has to be passed to build project.
 Data about books in shop.
   - [GET /books](#get-books)
   - [GET /books/[id]](#get-booksid)
-  - [POST /books/book](#post-booksbook)
-  - [PUT /books/book](#put-booksbook)
-  - [DELETE /books/book](#delete-booksbook)
+  - [POST /books/book](#post-books)
+  - [PUT /books/book](#put-books)
+  - [DELETE /books/book](#delete-books)
 
 ##### GET /books
 
@@ -37,7 +37,7 @@ Response body:
     author: "Bolesław Prus",
     pagesCount: 859,
     price: 49.97,
-    count: null,
+    count: 1,
     idUser: 1
   },
   {
@@ -46,7 +46,7 @@ Response body:
     author: "Ernest Hemingway",
     pagesCount: 90,
     price: 19.99,
-    count: null,
+    count: 1,
     idUser: 2
   }
 ] 
@@ -59,16 +59,18 @@ Example: http://localhost:8080/books/1
 Response body:
 
 ```
-<book>
-  <author>Bolesław Prus</author>
-  <id>1</id>
-  <pagesCount>859</pagesCount>
-  <price>49.97</price>
-  <title>Lalka</title>
-</book>
+{
+    "id": 1,
+    "title": "Lalka",
+    "author": "Bolesław Prus",
+    "pagesCount": 859,
+    "price": 49.97,
+    "count": 1,
+    "idUser": 1
+}
   ```
   
-##### POST /books/book
+##### POST /books
 
 Example: http://localhost:8080/books/book
 
@@ -81,12 +83,12 @@ Request body:
     "author": "Sienkiewicz",
     "pagesCount": 300,
     "price": 19.97,
-    "count": null,
+    "count": 1,
     "idUser": 2
 }
   ```
   
-##### PUT /books/book
+##### PUT /books
 
 Example: http://localhost:8080/books/book
 
@@ -99,12 +101,12 @@ Request body:
     "author": "Mickiewicz",
     "pagesCount": 300,
     "price": 19.97,
-    "count": null,
+    "count": 1,
     "idUser": 2
 }
   ```
   
-##### DELETE /books/book
+##### DELETE /books
 
 Example: http://localhost:8080/books/book
 
@@ -117,7 +119,7 @@ Request body:
     "author": "Mickiewicz",
     "pagesCount": 300,
     "price": 19.97,
-    "count": null,
+    "count": 1,
     "idUser": 2
 }
   ```
@@ -125,18 +127,228 @@ Request body:
 #### OrderData
 Data about submitted orders.
   - [GET /orderData](#get-orderData)
-  - [GET /orderData/[id]](#get-orderDatabyid)
+  - [GET /orderData/[id]](#get-orderDataid)
   - [POST /orderData/orderData](#post-orderData)
   - [PUT /orderData/orderData](#put-orderData)
   - [DELETE /orderData/orderData](#delete-orderData)
+  
+##### GET /orderData
+
+Example: http://localhost:8080/orderData
+
+Response body:
+
+```
+[
+    {
+        "id": 1,
+        "orderDate": "2020-01-01",
+        "payMethod": "card",
+        "deliveryMethod": "delivery",
+        "userOrderCollection": [
+            {
+                "userOrderPK": {
+                    "id": 1,
+                    "idBook": 1,
+                    "idOrder": 1
+                },
+                "count": 1,
+                "book": {
+                    "id": 1,
+                    "title": "Lalka",
+                    "author": "Bolesław Prus",
+                    "pagesCount": 859,
+                    "price": 49.97,
+                    "count": 1,
+                    "idUser": 1
+                }
+            }
+        ],
+        "idUser": 1
+    }
+]
+  ```
+  
+##### GET /orderData/[id]
+
+Example: http://localhost:8080/orderData/1
+
+Response body:
+
+```
+{
+    "id": 1,
+    "orderDate": "2020-01-01",
+    "payMethod": "card",
+    "deliveryMethod": "delivery",
+    "userOrderCollection": [
+        {
+            "userOrderPK": {
+                "id": 1,
+                "idBook": 1,
+                "idOrder": 1
+            },
+            "count": 1,
+            "book": {
+                "id": 1,
+                "title": "Lalka",
+                "author": "Bolesław Prus",
+                "pagesCount": 859,
+                "price": 49.97,
+                "count": 1,
+                "idUser": 1
+            }
+        }
+    ],
+    "idUser": 1
+}
+  ```
+  
+##### POST /orderData
+
+Example: http://localhost:8080/orderData
+
+Request body:
+
+```
+
+```
+  
+##### PUT /orderData
+
+Example: http://localhost:8080/orderData
+
+Request body:
+
+```
+
+```
+  
+##### DELETE /orderData
+
+Example: http://localhost:8080/orderData
+
+Request body:
+
+```
+
+  ```
+
 
 #### UserData
 Data about users.
   - [GET /userData](#get-userData)
-  - [GET /userData/[id]](#get-userDatabyid)
+  - [GET /userData/[id]](#get-userDataid)
   - [POST /userData/userData](#post-userData)
   - [PUT /userData/userData](#put-userData)
   - [DELETE /userData/userData](#delete-userData)
+  
+##### GET /userData
+
+Example: http://localhost:8080/userData
+
+Response body:
+
+```
+[
+    {
+        "id": 1,
+        "email": "sebastian@wp.pl",
+        "firstName": "Sebastian",
+        "lastName": "Kasa",
+        "city": "Gdansk",
+        "postalCode": "80-000",
+        "street": "Grunwaldzka",
+        "homeNumber": "51"
+    },
+    {
+        "id": 2,
+        "email": "aDudek@wp.pl",
+        "firstName": "Adam",
+        "lastName": "Dudek",
+        "city": "Warszawa",
+        "postalCode": "00-000",
+        "street": "Marszalkowska",
+        "homeNumber": "511"
+    }
+]
+  ```
+  
+##### GET /userData/[id]
+
+Example: http://localhost:8080/userData/1
+
+Response body:
+
+```
+{
+    "id": 1,
+    "email": "sebastian@wp.pl",
+    "firstName": "Sebastian",
+    "lastName": "Kasa",
+    "city": "Gdansk",
+    "postalCode": "80-000",
+    "street": "Grunwaldzka",
+    "homeNumber": "51"
+}
+  ```
+  
+##### POST /userData/userData
+
+Example: http://localhost:8080/userData/userData
+
+Request body:
+
+```
+{
+    "id": null,
+    "email": "sebastian@wp.pl",
+    "firstName": "Sebastian",
+    "lastName": "Kassowski",
+    "city": "Gdansk",
+    "postalCode": "80-000",
+    "street": "Grunwaldzka",
+    "homeNumber": "51"
+}
+```
+  
+##### PUT /userData/userData
+
+Example: http://localhost:8080/userData/userData
+
+Request body:
+
+```
+{
+    "id": 3,
+    "email": "sebastian@wp.pl",
+    "firstName": "Sebastian",
+    "lastName": "Kassowski",
+    "city": "Gdansk",
+    "postalCode": "80-000",
+    "street": "Polna",
+    "homeNumber": "1"
+}
+```
+  
+##### DELETE /userData/userData
+
+Example: http://localhost:8080/userData/userData
+
+Request body:
+
+```
+{
+    "id": 3,
+    "email": "sebastian@wp.pl",
+    "firstName": "Sebastian",
+    "lastName": "Kassowski",
+    "city": "Gdansk",
+    "postalCode": "80-000",
+    "street": "Polna",
+    "homeNumber": "1"
+}
+```
   
 #### UserOrderData
 Data about relations beetwen users and their orders.
