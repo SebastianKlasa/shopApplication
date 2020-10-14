@@ -18,10 +18,10 @@ Application has tests that has to be passed to build project.
 #### Book
 Data about books in shop.
   - [GET /books](#get-books)
-  - [GET /books/[id]](#get-books/[id])
-  - [POST /books/book](#post-book)
-  - [PUT /books/book](#put-book)
-  - [DELETE /books/book](#delete-book)
+  - [GET /books/[id]](#get-booksid)
+  - [POST /books/book](#post-booksbook)
+  - [PUT /books/book](#put-booksbook)
+  - [DELETE /books/book](#delete-booksbook)
 
 ##### GET /books
 
