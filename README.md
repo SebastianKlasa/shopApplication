@@ -124,13 +124,27 @@ Request body:
 
 #### OrderData
 Data about submitted orders.
-`GET /thing/id`
+  - [GET /orderData](#get-orderData)
+  - [GET /orderData/[id]](#get-orderDatabyid)
+  - [POST /orderData/orderData](#post-orderData)
+  - [PUT /orderData/orderData](#put-orderData)
+  - [DELETE /orderData/orderData](#delete-orderData)
+
 #### UserData
 Data about users.
-`GET /thing/id`
+  - [GET /userData](#get-userData)
+  - [GET /userData/[id]](#get-userDatabyid)
+  - [POST /userData/userData](#post-userData)
+  - [PUT /userData/userData](#put-userData)
+  - [DELETE /userData/userData](#delete-userData)
+  
 #### UserOrderData
 Data about relations beetwen users and their orders.
-`GET /thing/id`
+  - [GET /userOrder](#get-userOrder)
+  - [GET /userOrder/[id]](#get-userOrderbyid)
+  - [POST /userOrder/userOrder](#post-userOrder)
+  - [PUT /userOrder/userOrder](#put-userOrder)
+  - [DELETE /userOrder/userOrder](#delete-userOrder)
 
 ### Technologies
 - Java 8
