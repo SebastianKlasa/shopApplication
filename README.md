@@ -29,7 +29,7 @@ Example: http://localhost:8080/books
 
 Response body:
 
-```  [
+``  [
   {
   id: 1,
   title: "Lalka",
@@ -66,7 +66,7 @@ Response body:
   count: null,
   idUser: 2
   }
-  ]```
+  ]``
 
 #### OrderData
 Data about submitted orders.
