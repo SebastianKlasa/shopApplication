@@ -132,6 +132,12 @@ Data about submitted orders.
   - [PUT /orderData/orderData](#put-orderData)
   - [DELETE /orderData/orderData](#delete-orderData)
   
+Record will be saved or updated in database if:
+- all taken items are available
+- there is at least one item in order
+- there are not duplicates in order
+- total cost of order is higher than 29.0
+
 ##### GET /orderData
 
 Example: http://localhost:8080/orderData
@@ -141,31 +147,40 @@ Response body:
 ```
 [
     {
-        "id": 1,
-        "orderDate": "2020-01-01",
-        "payMethod": "card",
-        "deliveryMethod": "delivery",
-        "userOrderCollection": [
-            {
-                "userOrderPK": {
-                    "id": 1,
-                    "idBook": 1,
-                    "idOrder": 1
-                },
-                "count": 1,
-                "book": {
-                    "id": 1,
-                    "title": "Lalka",
-                    "author": "Bolesław Prus",
-                    "pagesCount": 859,
-                    "price": 49.97,
-                    "count": 1,
-                    "idUser": 1
-                }
+    "id": 19,
+    "orderDate": "2020-01-01",
+    "payMethod": "card",
+    "deliveryMethod": "delivery",
+    "userOrderCollection": [
+        {
+            "id": 6,
+            "count": 1,
+            "book": {
+                "id": 1,
+                "title": "Lalka",
+                "author": "Bolesław Prus",
+                "pagesCount": 600,
+                "price": 29.99,
+                "count": 100,
+                "idUser": 1
             }
-        ],
-        "idUser": 1
-    }
+        },
+        {
+            "id": 7,
+            "count": 1,
+            "book": {
+                "id": 2,
+                "title": "Stary czlowiek i morze",
+                "author": "Ernest Hemingway",
+                "pagesCount": 90,
+                "price": 19.99,
+                "count": 50,
+                "idUser": 2
+            }
+        }
+    ],
+    "idUser": 1
+  }
 ]
   ```
   
@@ -183,19 +198,15 @@ Response body:
     "deliveryMethod": "delivery",
     "userOrderCollection": [
         {
-            "userOrderPK": {
-                "id": 1,
-                "idBook": 1,
-                "idOrder": 1
-            },
+            "id": 6,
             "count": 1,
             "book": {
                 "id": 1,
                 "title": "Lalka",
                 "author": "Bolesław Prus",
-                "pagesCount": 859,
-                "price": 49.97,
-                "count": 1,
+                "pagesCount": 600,
+                "price": 29.99,
+                "count": 100,
                 "idUser": 1
             }
         }
@@ -211,7 +222,45 @@ Example: http://localhost:8080/orderData
 Request body:
 
 ```
-
+{
+    "id": null,
+    "orderDate": "2020-01-01",
+    "payMethod": "card",
+    "deliveryMethod": "delivery",
+    "userOrderCollection": [
+        {
+            "id": null,
+            "idBook": 1,
+            "idOrder": null,
+            "count": 1,
+            "book": {
+                "id": 1,
+                "title": "Lalka",
+                "author": "Bolesław Prus",
+                "pagesCount": 600,
+                "price": 29.99,
+                "count": 100,
+                "idUser": 1
+            }
+        },
+        {
+            "id": null,
+            "idBook": 1,
+            "idOrder": null,
+            "count": 1,
+            "book": {
+                "id": 2,
+                "title": "Stary czlowiek i morze",
+                "author": "Ernest Hemingway",
+                "pagesCount": 90,
+                "price": 19.99,
+                "count": 50,
+                "idUser": 2
+            }
+        }
+    ],
+    "idUser": 1
+}
 ```
   
 ##### PUT /orderData
@@ -221,7 +270,45 @@ Example: http://localhost:8080/orderData
 Request body:
 
 ```
-
+{
+    "id": 1,
+    "orderDate": "2020-01-01",
+    "payMethod": "card",
+    "deliveryMethod": "delivery",
+    "userOrderCollection": [
+        {
+            "id": 1,
+            "idBook": 1,
+            "idOrder": 1,
+            "count": 1,
+            "book": {
+                "id": 1,
+                "title": "Lalka",
+                "author": "Bolesław Prus",
+                "pagesCount": 600,
+                "price": 29.99,
+                "count": 100,
+                "idUser": 1
+            }
+        },
+        {
+            "id": 2,
+            "idBook": 1,
+            "idOrder": 1,
+            "count": 1,
+            "book": {
+                "id": 2,
+                "title": "Stary czlowiek i morze",
+                "author": "Ernest Hemingway",
+                "pagesCount": 90,
+                "price": 19.99,
+                "count": 50,
+                "idUser": 2
+            }
+        }
+    ],
+    "idUser": 1
+}
 ```
   
 ##### DELETE /orderData
@@ -367,11 +454,20 @@ Response body:
 ```
 [
     {
-        "userOrderPK": {
+        "id": 1,
+        "count": 1,
+        "book": {
             "id": 1,
-            "idBook": 1,
-            "idOrder": 1
-        },
+            "title": "Lalka",
+            "author": "Bolesław Prus",
+            "pagesCount": 600,
+            "price": 29.99,
+            "count": 100,
+            "idUser": 1
+        }
+    },
+    {
+        "id": 2,
         "count": 1,
         "book": {
             "id": 1,
@@ -393,38 +489,32 @@ Example: http://localhost:8080/userOrder/1
 Response body:
 
 ```
-
+{
+        "id": 1,
+        "count": 1,
+        "book": {
+            "id": 1,
+            "title": "Lalka",
+            "author": "Bolesław Prus",
+            "pagesCount": 600,
+            "price": 29.99,
+            "count": 100,
+            "idUser": 1
+        }
+    }
 ```
   
 ##### POST /userOrder
 
-Example: http://localhost:8080/userOrder
-
-Request body:
-
-```
-
-```
+Post userOrder as a child of OrderData
   
 ##### PUT /userOrder
 
-Example: http://localhost:8080/userOrder
-
-Request body:
-
-```
-
-```
+Put userOrder as a child of OrderData
   
 ##### DELETE /userOrder
 
-Example: http://localhost:8080/userOrder
-
-Request body:
-
-```
-
-```
+Delete userOrder through deleting OrderData
 
 ### Technologies
 - Java 8
