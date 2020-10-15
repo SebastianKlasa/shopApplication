@@ -230,8 +230,6 @@ Request body:
     "userOrderCollection": [
         {
             "id": null,
-            "idBook": 1,
-            "idOrder": null,
             "count": 1,
             "book": {
                 "id": 1,
@@ -278,8 +276,6 @@ Request body:
     "userOrderCollection": [
         {
             "id": 1,
-            "idBook": 1,
-            "idOrder": 1,
             "count": 1,
             "book": {
                 "id": 1,
@@ -293,8 +289,6 @@ Request body:
         },
         {
             "id": 2,
-            "idBook": 1,
-            "idOrder": 1,
             "count": 1,
             "book": {
                 "id": 2,
