@@ -24,7 +24,6 @@ public class BookService {
     }
     
     public void updateBook(Book book){
-        System.out.println("service");
         bookDao.updateBook(book);
     }
     

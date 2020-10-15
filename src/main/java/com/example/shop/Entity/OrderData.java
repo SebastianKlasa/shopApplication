@@ -54,8 +54,10 @@ public class OrderData implements Serializable {
     private String payMethod;
     @Column(name = "delivery_method")
     private String deliveryMethod;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderData")
     private Collection<UserOrder> userOrderCollection;
+
     @Column(name = "id_user")
     private Integer idUser;
 

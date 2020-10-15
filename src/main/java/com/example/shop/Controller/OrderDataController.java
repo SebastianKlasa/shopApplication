@@ -29,6 +29,7 @@ public class OrderDataController {
     
     @RequestMapping(method = RequestMethod.POST)
     public void addOrderData(@RequestBody OrderData orderData){
+
         orderDataService.addOrderData(orderData);
     }
     

@@ -1,5 +1,6 @@
 package com.example.shop.Service;
 
+import com.example.shop.Dao.BookDao;
 import com.example.shop.Dao.OrderDataDao;
 import com.example.shop.Dao.UserOrderDao;
 import com.example.shop.Entity.Book;
@@ -10,6 +11,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.example.shop.Entity.UserOrderPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +33,19 @@ public class OrderDataService {
         List<UserOrder> orderElements = (ArrayList<UserOrder>)orderData.getUserOrderCollection();
         if(isItemInMagazine(orderElements) && isOneElementInOrder(orderElements) 
                 && noDuplicatesInOrder(orderElements) && isOrderCostEnough(orderElements)){
-            orderDataDao.addOrderData(orderData);            
+
+            BookDao bookDao = new BookDao();
+
+            for(UserOrder el:orderElements){
+                el.setOrderData(orderData);
+                //update books
+                Book book = el.getBook();
+                book.setCount(book.getCount() - el.getCount());
+                bookDao.updateBook(book);
+            }
+            orderData.setUserOrderCollection(orderElements);
+
+            orderDataDao.addOrderData(orderData);
         }
     }
     
@@ -67,7 +82,7 @@ public class OrderDataService {
     
     private boolean isOneElementInOrder(List<UserOrder> orderElements){ 
         if(orderElements.size()>0) return true;
-        else return true;
+        else return false;
     }
     
     private boolean noDuplicatesInOrder(List<UserOrder> orderElements){ 

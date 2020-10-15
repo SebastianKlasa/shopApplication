@@ -26,18 +26,18 @@ public class UserOrderController {
         return userOrderService.getUserOrderById(id);
     }
     
-    @RequestMapping(method = RequestMethod.POST)
-    public void addUserOrder(@RequestBody UserOrder userOrder){
-        userOrderService.addUserOrder(userOrder);
-    }
-    
-    @RequestMapping(method = RequestMethod.PUT)
-    public void updateUserOrder(@RequestBody UserOrder userOrder){
-        userOrderService.updateUserOrder(userOrder);
-    }
-    
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteUserOrder(@RequestBody UserOrder userOrder){
-        userOrderService.deleteUserOrder(userOrder);
-    }
+//    @RequestMapping(method = RequestMethod.POST)
+//    public void addUserOrder(@RequestBody UserOrder userOrder){
+//        userOrderService.addUserOrder(userOrder);
+//    }
+//
+//    @RequestMapping(method = RequestMethod.PUT)
+//    public void updateUserOrder(@RequestBody UserOrder userOrder){
+//        userOrderService.updateUserOrder(userOrder);
+//    }
+//
+//    @RequestMapping(method = RequestMethod.DELETE)
+//    public void deleteUserOrder(@RequestBody UserOrder userOrder){
+//        userOrderService.deleteUserOrder(userOrder);
+//    }
 }

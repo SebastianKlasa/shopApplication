@@ -7,14 +7,7 @@ package com.example.shop.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -24,23 +17,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "user_order")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "UserOrder.findAll", query = "SELECT u FROM UserOrder u")
-    , @NamedQuery(name = "UserOrder.findById", query = "SELECT u FROM UserOrder u WHERE u.userOrderPK.id = :id")
-    , @NamedQuery(name = "UserOrder.findByIdBook", query = "SELECT u FROM UserOrder u WHERE u.userOrderPK.idBook = :idBook")
-    , @NamedQuery(name = "UserOrder.findByIdOrder", query = "SELECT u FROM UserOrder u WHERE u.userOrderPK.idOrder = :idOrder")
-    , @NamedQuery(name = "UserOrder.findByCount", query = "SELECT u FROM UserOrder u WHERE u.count = :count")})
 public class UserOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UserOrderPK userOrderPK;
+//    @EmbeddedId
+//    protected UserOrderPK userOrderPK;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private int id;
     @Column(name = "count")
     private Integer count;
-    @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_book", nullable=false)
     @ManyToOne(optional = false)
     private Book book;
-    @JoinColumn(name = "id_order", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_order", nullable=false)
     @ManyToOne(optional = false)
     @JsonIgnore
     private OrderData orderData;
@@ -48,25 +41,34 @@ public class UserOrder implements Serializable {
     public UserOrder() {
     }
 
-    public UserOrder(UserOrderPK userOrderPK) {
-        this.userOrderPK = userOrderPK;
-    }
+//    public UserOrder(UserOrderPK userOrderPK) {
+//        this.userOrderPK = userOrderPK;
+//    }
 
-    public UserOrder(int id, int idBook, int idOrder) {
-        this.userOrderPK = new UserOrderPK(id, idBook, idOrder);
-    }
+//    public UserOrder(int id, int idBook, int idOrder) {
+//        this.userOrderPK = new UserOrderPK(id, idBook, idOrder);
+//    }
     
     public UserOrder(Book book, Integer count){
         this.book = book;
         this.count = count;
     }
 
-    public UserOrderPK getUserOrderPK() {
-        return userOrderPK;
+//    public UserOrderPK getUserOrderPK() {
+//        return userOrderPK;
+//    }
+//
+//    public void setUserOrderPK(UserOrderPK userOrderPK) {
+//        this.userOrderPK = userOrderPK;
+//    }
+
+
+    public int getId() {
+        return id;
     }
 
-    public void setUserOrderPK(UserOrderPK userOrderPK) {
-        this.userOrderPK = userOrderPK;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Integer getCount() {
@@ -96,7 +98,7 @@ public class UserOrder implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (userOrderPK != null ? userOrderPK.hashCode() : 0);
+        hash += (id);
         return hash;
     }
 
@@ -107,7 +109,7 @@ public class UserOrder implements Serializable {
             return false;
         }
         UserOrder other = (UserOrder) object;
-        if ((this.userOrderPK == null && other.userOrderPK != null) || (this.userOrderPK != null && !this.userOrderPK.equals(other.userOrderPK))) {
+        if (this.id!=other.id) {
             return false;
         }
         return true;
@@ -115,7 +117,7 @@ public class UserOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.shop.Entity.UserOrder[ userOrderPK=" + userOrderPK + " ]";
+        return "com.example.shop.Entity.UserOrder[ id=" + id + " ]";
     }
     
 }
